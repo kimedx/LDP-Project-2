@@ -1,4 +1,43 @@
 # Large Scale Data Processing: Project 2
+## Results for Submission
+### Part 1 (exactF2)
+| Machine | F_0/F_2 | Time Elapsed | Additional Input Values |
+|---------|---------|--------------|-------------------------|
+| Local | F_2 | s | |
+| GCP | F_2 | s | |
+
+### Part 2 (Tug-of-War)
+| Machine | F_0/F_2 | Time Elapsed | Additional Input Values |
+|---------|---------|--------------|-------------------------|
+| Local | F_2 | s | width = , depth = |
+| GCP | F_2 | s | width = , depth = |
+
+### Part 3 (BJKST)
+| Machine | F_0/F_2 | Time Elapsed | Additional Input Values |
+|---------|---------|--------------|-------------------------|
+| Local | F_0 | s | width = , trials = |
+| GCP | F_0 | s | width = , trials = |
+
+### Part 4-1 (BJKST vs. exactF0)
+| Algorithm | Machine | F_0 | Time Elapsed |
+|-----------|---------|-----|--------------|
+| BJKST | Local |  | s | 
+| exactF0 | Local |  | s |
+| BJKST | GCP |  | s | 
+| exactF0 | GCP |  | s |
+
+Analysis:
+
+### Part 4-2 (Tug-of-War vs. exactF2)
+| Algorithm | Machine | F_2 | Time Elapsed |
+|-----------|---------|-----|--------------|
+| Tug-of-War | Local |  | s | 
+| exactF2 | Local |  | s |
+| Tug-of-War | GCP |  | s | 
+| exactF2 | GCP |  | s |
+
+Analysis: 
+
 ## Getting started
 Head to [Project 1](https://github.com/CSCI3390Spring2025/project_1) if you're looking for information on Git, template repositories, or setting up your local/remote environments.
 
