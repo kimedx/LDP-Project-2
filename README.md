@@ -1,9 +1,9 @@
 # Large Scale Data Processing: Project 2
 ## Results for Submission
 ### Part 1 (exactF2)
-| Machine | F_0/F_2 | Time Elapsed | Additional Input Values |
+| Machine | F_2 | Time Elapsed | Additional Input Values |
 |---------|---------|--------------|-------------------------|
-| Local | F_2 | s | |
+| Local | 8,567,966,130 | 26s | |
 | GCP | F_2 | s | |
 
 ### Part 2 (Tug-of-War)
@@ -22,7 +22,7 @@
 | Algorithm | Machine | F_0 | Time Elapsed |
 |-----------|---------|-----|--------------|
 | BJKST | Local |  | s | 
-| exactF0 | Local |  | s |
+| exactF0 | Local | 7,406,649 | 25s |
 | BJKST | GCP |  | s | 
 | exactF0 | GCP |  | s |
 
@@ -32,7 +32,7 @@ Analysis:
 | Algorithm | Machine | F_2 | Time Elapsed |
 |-----------|---------|-----|--------------|
 | Tug-of-War | Local |  | s | 
-| exactF2 | Local |  | s |
+| exactF2 | Local | 8,567,966,130 | 26s |
 | Tug-of-War | GCP |  | s | 
 | exactF2 | GCP |  | s |
 
