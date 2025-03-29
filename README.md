@@ -13,15 +13,15 @@
 | GCP | F_2 | s | width = , depth = |
 
 ### Part 3 (BJKST)
-| Machine | F_0/F_2 | Time Elapsed | Additional Input Values |
+| Machine | F_0 | Time Elapsed | Additional Input Values |
 |---------|---------|--------------|-------------------------|
-| Local | F_0 | s | width = , trials = |
+| Local | 7,372,800 | 7s | width = 256, trials = 5|
 | GCP | F_0 | s | width = , trials = |
 
-### Part 4-1 (BJKST vs. exactF0)
+### Part 4-1 (BJKST (width): 256 depth: 5)vs. exactF0)
 | Algorithm | Machine | F_0 | Time Elapsed |
 |-----------|---------|-----|--------------|
-| BJKST | Local | 7,372,800 | s | 
+| BJKST | Local | 7,372,800 | 7s | 
 | exactF0 | Local | 7,406,649 | 25s |
 | BJKST | GCP |  | s | 
 | exactF0 | GCP |  | s |
