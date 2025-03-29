@@ -16,17 +16,17 @@
 | Machine | F_0 | Time Elapsed | Additional Input Values |
 |---------|---------|--------------|-------------------------|
 | Local | 7,372,800 | 7s | width = 256, trials = 5|
-| GCP | F_0 | s | width = , trials = |
+| GCP | 7,733,248 | 40s | width = 256, trials = 5|
 
 ### Part 4-1 (BJKST (width): 256 depth: 5)vs. exactF0)
 | Algorithm | Machine | F_0 | Time Elapsed |
 |-----------|---------|-----|--------------|
 | BJKST | Local | 7,372,800 | 7s | 
 | exactF0 | Local | 7,406,649 | 25s |
-| BJKST | GCP |  | s | 
+| BJKST | GCP | 7,733,248 | 40s | 
 | exactF0 | GCP | 7,406,649 | 67s |
 
-Analysis:
+Analysis: While both BJKST algorithm runs completed in less than 40 seconds both on the local machine and on GCP, the algorithm that computes the exact F0 value took 67 seconds on GCP, providing evidence for the efficiency of BJKST algorithm. The precision of the estimations was also reasonable, with local result being 0.46% off from the exact value and the GCP result being 4.4% off from the exact value.
 
 ### Part 4-2 (Tug-of-War(width:10 depth:3) vs. exactF2)
 | Algorithm | Machine | F_2 | Time Elapsed |
