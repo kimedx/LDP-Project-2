@@ -21,7 +21,7 @@
 ### Part 4-1 (BJKST vs. exactF0)
 | Algorithm | Machine | F_0 | Time Elapsed |
 |-----------|---------|-----|--------------|
-| BJKST | Local |  | s | 
+| BJKST | Local | 7,372,800 | s | 
 | exactF0 | Local | 7,406,649 | 25s |
 | BJKST | GCP |  | s | 
 | exactF0 | GCP |  | s |
