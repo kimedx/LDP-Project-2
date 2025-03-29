@@ -53,37 +53,51 @@ object main{
       val t= convert(s,s.length)
       val t2 = t*t % p
       val t3 = t2*t % p
-      return if ( ( ((a * t3 + b* t2 + c*t + b) % p) & 1) == 0 ) 1 else -1;
+      return if ( ( ((a * t3 + b* t2 + c*t + d) % p) & 1) == 0 ) 1 else -1;
     }
 
     override def hash(t: Long): Long = {       /* returns +1 or -1 with prob. 1/2 */
       val t2 = t*t % p
       val t3 = t2*t % p
-      return if( ( ((a * t3 + b* t2 + c*t + b) % p) & 1) == 0 ) 1 else -1;
+      return if( ( ((a * t3 + b* t2 + c*t + d) % p) & 1) == 0 ) 1 else -1;
     }
   }
 
-  class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
-/* A constructor that requies intialize the bucket and the z value. The bucket size is the bucket size of the sketch. */
+class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
+  var bucket: Set[(String, Int)] = bucket_in
+  var z: Int = z_in
+  val BJKST_bucket_size = bucket_size_in
 
-    var bucket: Set[(String, Int)] = bucket_in
-    var z: Int =
-
-    val BJKST_bucket_size = bucket_size_in;z_in
-
-    def this(s: String, z_of_s: Int, bucket_size_in: Int){
-      /* A constructor that allows you pass in a single string, zeroes of the string, and the bucket size to initialize the sketch */
-      this(Set((s, z_of_s )) , z_of_s, bucket_size_in)
-    }
-
-    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
-
-    }
-
-    def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
-
-    }
+  def this(s: String, z_of_s: Int, bucket_size_in: Int){
+    this(Set((s, z_of_s)) , z_of_s, bucket_size_in)
   }
+
+  def +(that: BJKSTSketch): BJKSTSketch = {
+    val merged = this.bucket union that.bucket
+    var new_z = Math.max(this.z, that.z)
+    var new_bucket = merged.filter { case (_, zz) => zz >= new_z }
+
+    while (new_bucket.size > BJKST_bucket_size) {
+      new_z += 1
+      new_bucket = new_bucket.filter { case (_, zz) => zz >= new_z }
+    }
+
+    new BJKSTSketch(new_bucket, new_z, BJKST_bucket_size)
+  }
+
+  def add_string(s: String, z_of_s: Int): BJKSTSketch = {
+    var new_bucket = bucket
+    if (z_of_s >= z) {
+      new_bucket = new_bucket + ((s, z_of_s))
+    }
+    var new_z = z
+    while (new_bucket.size > BJKST_bucket_size) {
+      new_z += 1
+      new_bucket = new_bucket.filter { case (_, zz) => zz >= new_z }
+    }
+    new BJKSTSketch(new_bucket, new_z, BJKST_bucket_size)
+  }
+}
 
 
   def tidemark(x: RDD[String], trials: Int): Double = {
@@ -98,14 +112,51 @@ object main{
     return ans
   }
 
-
+  // Part 3
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
+    val hashers = Seq.fill(trials)(new hash_function(1L << 20))
+    val emptySketches = Seq.fill(trials)(new BJKSTSketch(Set.empty[(String, Int)], 0, width))
 
+    val sketches = x.aggregate(emptySketches)(
+      (acc, s) => {
+        acc.indices.map { i =>
+          val h = hashers(i)
+          val z = h.zeroes(h.hash(s))
+          acc(i).add_string(s, z)
+        }
+      },
+      (a1, a2) => {
+        a1.indices.map(i => a1(i) + a2(i))
+      }
+    )
+
+    val estimates = sketches.map(sk => sk.bucket.size * math.pow(2.0, sk.z))
+    val sorted = estimates.sorted
+    if (sorted.nonEmpty) sorted(sorted.length / 2) else 0.0
   }
 
-
+  // Part 4
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
 
+  val totalSketches = width * depth
+  val hashes = Seq.fill(totalSketches)(new four_universal_Radamacher_hash_function)
+
+  val frequencyRDD = x.map(s => (s, 1L)).reduceByKey(_ + _)
+
+  val allSketches = hashes.map { h =>
+    val sum = frequencyRDD.map { case (s, count) =>
+      h.hash(s) * count
+    }.reduce(_ + _)
+    sum * sum
+  }
+
+  val grouped = allSketches.grouped(width).toSeq
+  val means = grouped.map(group => group.sum.toDouble / width)
+  val sortedMeans = means.sorted
+  val median = if (depth % 2 == 1) sortedMeans(depth / 2)
+    else (sortedMeans(depth / 2 - 1) + sortedMeans(depth / 2)) / 2
+
+  median.toLong
   }
 
 
@@ -114,9 +165,14 @@ object main{
     return ans
   }
 
-
+  // Part 5
   def exact_F2(x: RDD[String]) : Long = {
-
+    val ans = x.map(word => (word, 1))
+    .reduceByKey(_ + _)
+    .map { case (_, count) => count.toLong * count }
+    .sum()
+    .toLong
+    return ans
   }
 
 
