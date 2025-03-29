@@ -12,14 +12,14 @@ Worked alone | Using first late-day policy for 24-hour extension
 ### Part 2 (Tug-of-War)
 | Machine | F_2 | Time Elapsed | Additional Input Values |
 |---------|---------|--------------|-------------------------|
-| Local | 9,231,024,631 | 130s | width = 10, depth = 3|
-| GCP | F_2 | s | width = , depth = |
+| Local | 9,231,024,631 | 130s | width = 10, depth = 3 |
+| GCP | 8,288,498,975 | 297s | width = 10, depth = 3 |
 
 ### Part 3 (BJKST)
 | Machine | F_0 | Time Elapsed | Additional Input Values |
 |---------|---------|--------------|-------------------------|
-| Local | 7,372,800 | 7s | width = 256, trials = 5|
-| GCP | 7,733,248 | 40s | width = 256, trials = 5|
+| Local | 7,372,800 | 7s | width = 256, trials = 5 |
+| GCP | 7,733,248 | 40s | width = 256, trials = 5 |
 
 ### Part 4-1 (BJKST (width): 256 depth: 5)vs. exactF0)
 | Algorithm | Machine | F_0 | Time Elapsed |
@@ -36,10 +36,10 @@ Analysis: While both BJKST algorithm runs completed in less than 40 seconds both
 |-----------|---------|-----|--------------|
 | Tug-of-War | Local | 9,231,024,631 | 130s |
 | exactF2 | Local | 8,567,966,130 | 26s |
-| Tug-of-War | GCP |  | s | 
+| Tug-of-War | GCP | 8,288,498,975 | 297s | 
 | exactF2 | GCP | 8,567,966,130 | 83s |
 
-Analysis: 
+Analysis: Unlike the comparison between the BJKST algorithm and the exactF0 algorithm, Tug-of-War sketch turned out to be significantly slower than the exactF2 algorithm on both the local machine and on GCP. Regarding precision, the Tug-of-War algorithm showed reliable precision being 7.74% off from the actual value on local machine and 3.27% off on GCP.
 
 ## Getting started
 Head to [Project 1](https://github.com/CSCI3390Spring2025/project_1) if you're looking for information on Git, template repositories, or setting up your local/remote environments.
