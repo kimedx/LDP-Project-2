@@ -4,7 +4,7 @@
 | Machine | F_2 | Time Elapsed |
 |---------|---------|--------------|
 | Local | 8,567,966,130 | 26s |
-| GCP | F_2 | s |
+| GCP | 8,567,966,130 | 83s |
 
 ### Part 2 (Tug-of-War)
 | Machine | F_2 | Time Elapsed | Additional Input Values |
@@ -24,17 +24,17 @@
 | BJKST | Local | 7,372,800 | 7s | 
 | exactF0 | Local | 7,406,649 | 25s |
 | BJKST | GCP |  | s | 
-| exactF0 | GCP |  | s |
+| exactF0 | GCP | 7,406,649 | 67s |
 
 Analysis:
 
 ### Part 4-2 (Tug-of-War(width:10 depth:3) vs. exactF2)
 | Algorithm | Machine | F_2 | Time Elapsed |
 |-----------|---------|-----|--------------|
-| Tug-of-War | Local | 9,231,024,631 | 130s | 
+| Tug-of-War | Local | 9,231,024,631 | 130s |
 | exactF2 | Local | 8,567,966,130 | 26s |
 | Tug-of-War | GCP |  | s | 
-| exactF2 | GCP |  | s |
+| exactF2 | GCP | 8,567,966,130 | 83s |
 
 Analysis: 
 
