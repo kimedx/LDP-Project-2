@@ -1,4 +1,7 @@
 # Large Scale Data Processing: Project 2
+
+Worked alone | Using first late-day policy for 24-hour extension
+
 ## Results for Submission
 ### Part 1 (exactF2)
 | Machine | F_2 | Time Elapsed |
